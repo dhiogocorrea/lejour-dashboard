@@ -5,11 +5,11 @@ import BarChart from '../../components/charts/BarChart'
 
 const VendasPeriodo = params => {
   const dispatch = useDispatch()
-  const data = useSelector(({vendasPorPeriodo}) => vendasPorPeriodo.data)
+  const data = useSelector(({vendasPorPeriodo}) => params.comissao === true ? vendasPorPeriodo.dataComissao : vendasPorPeriodo.data)
 
   useEffect(() => {
     if (params !== undefined) {
-      dispatch(retrieveData(params.filter))
+      dispatch(retrieveData(params.filter, params.comissao))
     }
   }, [params])
 

@@ -7,11 +7,11 @@ const VendasFornecedor = params => {
   const dispatch = useDispatch()
   const [title, setTitle] = useState()
 
-  const data = useSelector(({vendasPorFornecedor}) => vendasPorFornecedor.data)
+  const data = useSelector(({vendasPorFornecedor}) => params.comissao === true ? vendasPorFornecedor.dataComissao : vendasPorFornecedor.data)
 
   useEffect(() => {
     if (params !== undefined) {
-      dispatch(retrieveData(params.filter))
+      dispatch(retrieveData(params.filter, params.comissao))
       setTitle(params.title + ' por fornecedor')
     }
   }, [params])

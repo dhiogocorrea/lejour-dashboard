@@ -5,8 +5,8 @@ import VendasCategoria from './categoria';
 import VendasCasamento from './casamento';
 import VendasFornecedor from './fornecedor';
 
-const VendasCharts = () => {
-  const [selectedFilter, setSelectedFilter] = useState('year')
+const VendasCharts = (params) => {
+  const [selectedFilter, setSelectedFilter] = useState(params.filter)
   const [title, setTitle] = useState('Total de vendas no Ano')
 
   const filters = [
@@ -21,7 +21,10 @@ const VendasCharts = () => {
   const handleFilterChange = (event) => {
     setSelectedFilter(event.target.value);
     setTitle(event.target.dataset.label)
+    params.setFilterRadio(event.target.value)
   }
+
+  console.log('VENDASSS')
 
   return (
     <div>
@@ -33,18 +36,22 @@ const VendasCharts = () => {
       <VendasPeriodo
         filter={selectedFilter}
         title={title}
+        comissao={false}
       />
       <VendasCasamento
         filter={selectedFilter}
         title={title}
+        comissao={false}
       />
       <VendasCategoria
         filter={selectedFilter}
         title={title}
+        comissao={false}
       />
       <VendasFornecedor
         filter={selectedFilter}
         title={title}
+        comissao={false}
       />
     </div>
   )

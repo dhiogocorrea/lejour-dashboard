@@ -101,6 +101,7 @@ function App() {
 
   const [open, setOpen] = React.useState(false);
   const [selectedTab, setSelectedTab] = React.useState(0);
+  const [filterRadio, setFilterRadio] = React.useState('year');
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -116,9 +117,9 @@ function App() {
 
   const renderCharts = () => {
     if (selectedTab === 0)
-      return (<VendasCharts />)
+      return (<VendasCharts filter={filterRadio} setFilterRadio={setFilterRadio} />)
     else if (selectedTab === 1) {
-      return (<ComissaoCharts />)
+      return (<ComissaoCharts filter={filterRadio} setFilterRadio={setFilterRadio} />)
     }
     return null
   }

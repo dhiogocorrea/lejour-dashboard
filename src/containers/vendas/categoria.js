@@ -6,11 +6,11 @@ import DonutChart from '../../components/charts/DonutChart'
 const VendasCategoria = params => {
   const dispatch = useDispatch()
   const [title, setTitle] = useState()
-  const data = useSelector(({vendasPorCategoria}) => vendasPorCategoria.data)
+  const data = useSelector(({vendasPorCategoria}) => params.comissao === true ? vendasPorCategoria.dataComissao : vendasPorCategoria.data)
 
   useEffect(() => {
     if (params !== undefined) {
-      dispatch(retrieveData(params.filter))
+      dispatch(retrieveData(params.filter, params.comissao))
       setTitle(params.title + ' por categoria')
     }
   }, [params])

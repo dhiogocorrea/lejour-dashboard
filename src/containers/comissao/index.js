@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import RadioFilters from '../../components/filter/RadioFilters';
+import VendasPeriodo from '../vendas/periodo';
+import VendasCategoria from '../vendas/categoria';
+import VendasCasamento from '../vendas/casamento';
+import VendasFornecedor from '../vendas/fornecedor';
 
-const ComissaoCharts = () => {
-  const [selectedFilter, setSelectedFilter] = useState('year')
+const ComissaoCharts = (params) => {
+  const [selectedFilter, setSelectedFilter] = useState(params.filter)
   const [title, setTitle] = useState('Total de vendas no Ano')
 
   const filters = [
@@ -17,7 +21,12 @@ const ComissaoCharts = () => {
   const handleFilterChange = (event) => {
     setSelectedFilter(event.target.value);
     setTitle(event.target.dataset.label)
+    params.setFilterRadio(event.target.value)
   }
+
+
+
+  console.log('COMISSAO')
 
   return (
     <div>
@@ -25,6 +34,26 @@ const ComissaoCharts = () => {
         filters={filters}
         selectedFilter={selectedFilter}
         handleFilterChange={handleFilterChange}
+      />
+      <VendasPeriodo
+        filter={selectedFilter}
+        title={title}
+        comissao={true}
+      />
+      <VendasCasamento
+        filter={selectedFilter}
+        title={title}
+        comissao={true}
+      />
+      <VendasCategoria
+        filter={selectedFilter}
+        title={title}
+        comissao={true}
+      />
+      <VendasFornecedor
+        filter={selectedFilter}
+        title={title}
+        comissao={true}
       />
     </div>
   )
