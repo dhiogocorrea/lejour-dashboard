@@ -29,6 +29,7 @@ const BarChart = ({ chartName, title, data }) => {
         },
       },
       xaxis: { categories: data.labels },
+      colors: ['#68BFB7']
     })
   }, [title, data]);
 

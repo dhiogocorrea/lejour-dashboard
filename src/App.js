@@ -24,6 +24,11 @@ import ComissaoCharts from './containers/comissao/index'
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
+  logo: {
+    maxWidth: 50,
+    marginTop: 5,
+    marginBottom: 5
+  },
   root: {
     display: 'flex',
   },
@@ -99,6 +104,8 @@ function App() {
     },
   });
 
+  const style = { backgroundColor: '#ffffff', color: '#E2645A' };
+
   const [open, setOpen] = React.useState(false);
   const [selectedTab, setSelectedTab] = React.useState(0);
   const [filterRadio, setFilterRadio] = React.useState('year');
@@ -133,7 +140,7 @@ function App() {
           [classes.appBarShift]: open,
         })}
       >
-        <Toolbar>
+        <Toolbar style={style}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -143,9 +150,7 @@ function App() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
-            Lejour
-          </Typography>
+          <img src="logo.png" alt="logo" className={classes.logo} />
         </Toolbar>
       </AppBar>
       <Drawer

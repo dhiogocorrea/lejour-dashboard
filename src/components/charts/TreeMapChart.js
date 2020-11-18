@@ -11,34 +11,33 @@ const TreeMapChart = ({ title, data }) => {
 
     let seriesAux = []
 
-    if(data.values !== undefined) {
+    if (data.values !== undefined) {
       data.values.forEach((value, i) => {
-        seriesAux.push({x: data.labels[i], y: value})
+        seriesAux.push({ x: data.labels[i], y: value })
       })
-    
+
       setSeries([{ data: seriesAux }])
       setOptions({
-        options: {
-          legend: {
-            show: false
-          },
-          chart: {
-            height: 450,
-            type: 'treemap'
-          },
-          title: {
-            text: title
-          },
+        legend: {
+          show: false
         },
+        chart: {
+          height: 450,
+          type: 'treemap'
+        },
+        title: {
+          text: title
+        },
+        colors: ['#68BFB7']
       })
     }
   }, [title, data]);
 
   return (
     <div>
-    {
-      series && <Chart options={options} series={series} type="treemap" height={450}></Chart>
-    }
+      {
+        series && <Chart options={options} series={series} type="treemap" height={450}></Chart>
+      }
     </div>
   );
 }
