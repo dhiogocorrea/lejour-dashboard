@@ -6,7 +6,6 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -17,9 +16,11 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import LoyaltyIcon from '@material-ui/icons/Loyalty';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
+import MemoryIcon from '@material-ui/icons/Memory';
 
 import VendasCharts from './containers/vendas/index'
 import ComissaoCharts from './containers/comissao/index'
+import InteligenciaCharts from './containers/inteligencia/index'
 
 const drawerWidth = 240;
 
@@ -127,6 +128,8 @@ function App() {
       return (<VendasCharts filter={filterRadio} setFilterRadio={setFilterRadio} />)
     else if (selectedTab === 1) {
       return (<ComissaoCharts filter={filterRadio} setFilterRadio={setFilterRadio} />)
+    } else if (selectedTab == 2) {
+      return (<InteligenciaCharts filter={filterRadio} setFilterRadio={setFilterRadio} />)
     }
     return null
   }
@@ -169,9 +172,9 @@ function App() {
         </div>
         <Divider />
         <List>
-          {['Vendas', 'Comissão'].map((text, index) => (
+          {['Vendas', 'Comissão', 'Inteligencia'].map((text, index) => (
             <ListItem button key={text} onClick={() => handleMenuClick(index)}>
-              <ListItemIcon>{index === 0 ? <LoyaltyIcon /> : <MonetizationOnIcon />}</ListItemIcon>
+              <ListItemIcon>{index === 0 ? <LoyaltyIcon /> : index === 1 ? <MonetizationOnIcon /> : <MemoryIcon />}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
           ))}

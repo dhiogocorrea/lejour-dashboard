@@ -9,7 +9,7 @@ const VendasPeriodo = params => {
 
   useEffect(() => {
     if (params !== undefined) {
-      dispatch(retrieveData(params.filter, params.comissao))
+      dispatch(retrieveData(params.filter, params.comissao, params.applyRegression))
     }
   }, [params])
 
