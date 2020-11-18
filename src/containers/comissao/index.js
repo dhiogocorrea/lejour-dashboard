@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
 
 const ComissaoCharts = (params) => {
   const [selectedFilter, setSelectedFilter] = useState(params.filter);
-  const [title, setTitle] = useState('Total de vendas no Ano');
+  const [title, setTitle] = useState('Total de comissão no Ano');
   const [value, setValue] = React.useState(0);
   const [switchChecked, setSwitchChecked] = React.useState(false);
 
