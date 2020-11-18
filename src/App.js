@@ -154,7 +154,7 @@ function App() {
             <MenuIcon />
           </IconButton>
           <img src="logo.png" alt="logo" className={classes.logo} />
-          <p>Dia atual setado para: 14/10/2020 15:15 para testes.</p>
+          <p>Dia atual setado em 14/10/2020 15:15 para testes.</p>
         </Toolbar>
       </AppBar>
       <Drawer
