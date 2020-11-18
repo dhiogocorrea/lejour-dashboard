@@ -9,10 +9,13 @@ import { makeStyles } from '@material-ui/core/styles';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import RadioFilters from '../../components/filter/RadioFilters';
+import Switch from '@material-ui/core/Switch';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 import VendasPeriodo from '../vendas/periodo';
 import VendasCategoria from '../vendas/categoria';
 import VendasCasamento from '../vendas/casamento';
 import VendasFornecedor from '../vendas/fornecedor';
+import useInterval from '../../core/utils/interval'
 
 const theme = createMuiTheme({
   palette: {
@@ -65,12 +68,16 @@ const useStyles = makeStyles((theme) => ({
 const ComissaoCharts = (params) => {
   const [selectedFilter, setSelectedFilter] = useState(params.filter);
   const [title, setTitle] = useState('Total de vendas no Ano');
-  const classes = useStyles();
   const [value, setValue] = React.useState(0);
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
+  const [switchChecked, setSwitchChecked] = React.useState(false);
 
+  const classes = useStyles();
+
+  const tab0 = React.useRef();
+  const tab1 = React.useRef();
+  const tab2 = React.useRef();
+  const tab3 = React.useRef();
+  
   const filters = [
     { label: 'Dia', value: 'day', title: 'Total de vendas no último dia' },
     { label: 'Semana', value: 'week', title: 'Total de vendas na última semana' },
@@ -80,11 +87,39 @@ const ComissaoCharts = (params) => {
     { label: 'Ano', value: 'year', title: 'Total de vendas no Ano' }
   ]
 
+  useInterval(() => {
+    if (switchChecked) {
+      switch(value) {
+        case 0:
+          tab1.current.click();
+          break;
+        case 1:
+          tab2.current.click();
+          break;
+        case 2:
+          tab3.current.click();
+          break;
+        case 3:
+          tab0.current.click();
+          break;
+      }
+    }
+  }, 10000)
+
+  const handleSwitchChange = (event) => {
+    setSwitchChecked(event.target.checked);
+  };
+
   const handleFilterChange = (event) => {
     setSelectedFilter(event.target.value);
     setTitle(event.target.dataset.label)
     params.setFilterRadio(event.target.value)
   }
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
 
   return (
     <MuiThemeProvider theme={theme}>
@@ -138,6 +173,9 @@ const ComissaoCharts = (params) => {
             comissao={true}
           />
         </TabPanel>
+        <FormControlLabel
+          control={<Switch size="small" checked={switchChecked} onChange={handleSwitchChange} />} label="Rolagem automática"
+        />
       </div>
     </MuiThemeProvider>
   )

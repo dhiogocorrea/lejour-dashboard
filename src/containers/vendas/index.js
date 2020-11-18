@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
@@ -9,10 +9,14 @@ import { makeStyles } from '@material-ui/core/styles';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import RadioFilters from '../../components/filter/RadioFilters';
+import Switch from '@material-ui/core/Switch';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 import VendasPeriodo from './periodo';
 import VendasCategoria from './categoria';
 import VendasCasamento from './casamento';
 import VendasFornecedor from './fornecedor';
+import useInterval from '../../core/utils/interval'
+
 
 const theme = createMuiTheme({
   palette: {
@@ -65,8 +69,40 @@ const useStyles = makeStyles((theme) => ({
 const VendasCharts = (params) => {
   const [selectedFilter, setSelectedFilter] = useState(params.filter);
   const [title, setTitle] = useState('Total de vendas no Ano');
-  const classes = useStyles();
   const [value, setValue] = React.useState(0);
+  const [switchChecked, setSwitchChecked] = React.useState(false);
+
+  const tab0 = React.useRef();
+  const tab1 = React.useRef();
+  const tab2 = React.useRef();
+  const tab3 = React.useRef();
+
+  const classes = useStyles();
+
+  useInterval(() => {
+    if (switchChecked) {
+      switch(value) {
+        case 0:
+          tab1.current.click();
+          break;
+        case 1:
+          tab2.current.click();
+          break;
+        case 2:
+          tab3.current.click();
+          break;
+        case 3:
+          tab0.current.click();
+          break;
+      }
+    }
+  }, 10000)
+
+  const handleSwitchChange = (event) => {
+    setSwitchChecked(event.target.checked);
+  };
+
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -103,10 +139,10 @@ const VendasCharts = (params) => {
               centered
               textColor="primary"
             >
-              <Tab label="Vendas" aria-label="vendas" {...a11yProps(0)} />
-              <Tab label="Vendas por casamento" aria-label="casamento" {...a11yProps(1)} />
-              <Tab label="Vendas por categoria" aria-label="categoria" {...a11yProps(2)} />
-              <Tab label="Vendas por fornecedor" aria-label="fornecedor" {...a11yProps(3)} />
+              <Tab ref={tab0} label="Vendas" aria-label="vendas" {...a11yProps(0)} />
+              <Tab ref={tab1} label="Vendas por casamento" aria-label="casamento" {...a11yProps(1)} />
+              <Tab ref={tab2} label="Vendas por categoria" aria-label="categoria" {...a11yProps(2)} />
+              <Tab ref={tab3} label="Vendas por fornecedor" aria-label="fornecedor" {...a11yProps(3)} />
             </Tabs>
           </Paper>
         </AppBar>
@@ -138,6 +174,9 @@ const VendasCharts = (params) => {
             comissao={false}
           />
         </TabPanel>
+        <FormControlLabel
+          control={<Switch size="small" checked={switchChecked} onChange={handleSwitchChange} />} label="Rolagem automática"
+        />
       </div>
     </MuiThemeProvider>
   )
