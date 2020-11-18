@@ -79,12 +79,12 @@ const ComissaoCharts = (params) => {
   const tab3 = React.useRef();
   
   const filters = [
-    { label: 'Dia', value: 'day', title: 'Total de vendas no último dia' },
-    { label: 'Semana', value: 'week', title: 'Total de vendas na última semana' },
-    { label: 'Mês', value: 'month', title: 'Total de vendas no último mês' },
-    { label: '3 Meses', value: 'three_months', title: 'Total de vendas nos últimos 3 meses' },
-    { label: '6 Meses', value: 'six_months', title: 'Total de vendas nos últimos 6 meses' },
-    { label: 'Ano', value: 'year', title: 'Total de vendas no Ano' }
+    { label: 'Dia', value: 'day', title: 'Total de comissão no último dia' },
+    { label: 'Semana', value: 'week', title: 'Total de comissões na última semana' },
+    { label: 'Mês', value: 'month', title: 'Total de comissões no último mês' },
+    { label: '3 Meses', value: 'three_months', title: 'Total de comissões nos últimos 3 meses' },
+    { label: '6 Meses', value: 'six_months', title: 'Total de comissões nos últimos 6 meses' },
+    { label: 'Ano', value: 'year', title: 'Total de comissões no Ano' }
   ]
 
   useInterval(() => {
@@ -138,10 +138,10 @@ const ComissaoCharts = (params) => {
               centered
               textColor="primary"
             >
-              <Tab label="Vendas" aria-label="vendas" {...a11yProps(0)} />
-              <Tab label="Vendas por casamento" aria-label="casamento" {...a11yProps(1)} />
-              <Tab label="Vendas por categoria" aria-label="categoria" {...a11yProps(2)} />
-              <Tab label="Vendas por fornecedor" aria-label="fornecedor" {...a11yProps(3)} />
+              <Tab label="Comissão" aria-label="vendas" {...a11yProps(0)} />
+              <Tab label="Comissão por casamento" aria-label="casamento" {...a11yProps(1)} />
+              <Tab label="Comissão por categoria" aria-label="categoria" {...a11yProps(2)} />
+              <Tab label="Comissão por fornecedor" aria-label="fornecedor" {...a11yProps(3)} />
             </Tabs>
           </Paper>
         </AppBar>
