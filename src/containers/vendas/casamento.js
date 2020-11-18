@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { retrieveData } from '../../core/store/vendas/vendasPorCasamentoSlice';
-import TreeMapChart from '../../components/charts/TreeMapChart';
+import ScatterPlotChart from '../../components/charts/ScatterPlotChart';
 
 const VendasCasamento = params => {
   const dispatch = useDispatch()
@@ -16,7 +16,7 @@ const VendasCasamento = params => {
   }, [params])
 
   return (
-    <TreeMapChart
+    <ScatterPlotChart
       title = {title}
       data = {data}
     />
