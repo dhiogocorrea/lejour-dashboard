@@ -3,7 +3,7 @@ import moment from 'moment'
 
 export const filterDate = (dateStr, type) => {
   let date = moment(dateStr, 'YYYY-MM-DD HH:mm')
-  let today = moment('2020-09-14 15:15', 'YYYY-MM-DD HH:mm')
+  let today = moment('2020-10-14 15:15', 'YYYY-MM-DD HH:mm')
 
   if (type === 'three_months') {
     return today.diff(date, 'months') < 3
