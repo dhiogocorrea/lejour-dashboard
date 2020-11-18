@@ -63,22 +63,22 @@ export const retrieveData = (filter, isComissao=false, applyRegression=false) =>
         nextdate = lastdate.add(1, 'weeks')
       }
 
-
       let avg = 0
-      if (values.length >= 3) {
-        avg = parseInt((values[values.length - 1] + values[values.length - 2] + values[values.length - 3]) / 3)
-      } else if (values.length === 2) {
-        avg = parseInt((values[values.length - 1] + values[values.length - 2]) / 2)
-      } else if (values.length === 1) {
-        avg = values[values.length - 1]
-      }
 
-      if (filter === 'month' || filter === 'week') nextdate = nextdate.format('YYYY-MM-DD')
-      else if (filter === 'year' || filter.includes('months')) nextdate = nextdate.format('YYYY-MM')
-      else if (filter === 'day') nextdate = nextdate.format('HH:mm')
+      if (values.length > 0) {
+        for (var v in values) {
+          avg += values[v];
+        }
+
+        avg = parseInt(avg/values.length)
       
-      labels.push(nextdate)
-      values.push(avg)
+        if (filter === 'month' || filter === 'week') nextdate = nextdate.format('YYYY-MM-DD')
+        else if (filter === 'year' || filter.includes('months')) nextdate = nextdate.format('YYYY-MM')
+        else if (filter === 'day') nextdate = nextdate.format('HH:mm')
+        
+        labels.push(nextdate)
+        values.push(avg)
+      }
     }
 
     var final = {
